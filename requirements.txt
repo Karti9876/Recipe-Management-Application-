@@ -3,5 +3,5 @@ uvicorn
 sqlalchemy
 pymysql
 python-dotenv
-google-generativeai
+requests
 pydantic
