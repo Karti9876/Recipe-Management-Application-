@@ -32,27 +32,6 @@ AI	Google Gemini (REST API)
 Frontend	HTML, CSS, JavaScript
 API Docs	Swagger UI
 Environment	Python Virtual Environment (uv)
-📂 Project Structure
-Smart Recipe Explorer/
-│
-├── app/
-│   ├── main.py
-│   ├── database.py
-│   ├── models.py
-│   ├── schemas.py
-│   └── routes/
-│       ├── recipes.py
-│       └── ai.py
-│
-├── frontend/
-│   ├── index.html
-│   ├── style.css
-│   └── script.js
-│
-├── .env
-├── requirements.txt
-└── README.md
-
 ⚙️ Environment Setup (Using uv)
 
 This project uses uv, a modern and fast Python package manager and virtual environment tool.
