@@ -1,4 +1,4 @@
-const API_BASE = "https://recipe-management-application-268d.onrender.com";
+const API_BASE = "https://recipe-management-application-1-nxbl.onrender.com";
 
 const dom = {};
 
