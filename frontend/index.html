@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Smart Recipe Explorer</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="bg-glow" aria-hidden="true"></div>
+    <div class="page">
+      <header class="hero">
+        <div>
+          <p class="eyebrow">Smart Recipe Explorer</p>
+          <h1>Cook smarter with AI + your pantry</h1>
+          <p class="lede">
+            Add your own recipes, search by ingredients, filter by cuisine and difficulty, and let the AI improve or
+            generate dishes instantly.
+          </p>
+          <div class="hero-meta">
+            <span>5 live endpoints</span>
+            <span class="mono">http://127.0.0.1:8000</span>
+          </div>
+        </div>
+        <div class="hero-card">
+          <p class="small">Try it out</p>
+          <ul>
+            <li>Add a recipe you know</li>
+            <li>Search by a single ingredient</li>
+            <li>Ask AI to tighten instructions</li>
+          </ul>
+        </div>
+      </header>
+
+      <main class="grid">
+        <section class="panel wide" id="add-recipe-panel">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Create</p>
+              <h2>Add a recipe</h2>
+            </div>
+            <span class="tag">POST /recipes/</span>
+          </div>
+          <form id="addRecipeForm" class="form-grid">
+            <label>
+              <span>Name</span>
+              <input id="name" name="name" placeholder="Smoky chickpea bowl" required />
+            </label>
+            <label>
+              <span>Ingredients (comma separated)</span>
+              <input id="ingredients" name="ingredients" placeholder="chickpeas, paprika, lemon" required />
+            </label>
+            <label>
+              <span>Cuisine</span>
+              <input id="cuisine" name="cuisine" placeholder="Mediterranean" required />
+            </label>
+            <label>
+              <span>Difficulty</span>
+              <input id="difficulty" name="difficulty" placeholder="Easy" required />
+            </label>
+            <label class="full">
+              <span>Instructions</span>
+              <textarea
+                id="instructions"
+                name="instructions"
+                rows="3"
+                placeholder="Toast spices, warm chickpeas, toss with lemon and herbs."
+                required
+              ></textarea>
+            </label>
+            <div class="actions full">
+              <button type="submit">Add recipe</button>
+              <p class="hint" id="add-status">Ready to send.</p>
+            </div>
+          </form>
+        </section>
+
+        <section class="panel" id="search-panel">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Search</p>
+              <h2>Find by ingredient</h2>
+            </div>
+            <span class="tag">GET /recipes/search</span>
+          </div>
+          <form id="searchForm" class="stack">
+            <label>
+              <span>Ingredient</span>
+              <input id="searchInput" name="ingredient" placeholder="tomato" required />
+            </label>
+            <div class="actions">
+              <button type="submit">Search</button>
+              <p class="hint" id="search-status"></p>
+            </div>
+          </form>
+        </section>
+
+        <section class="panel" id="filter-panel">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Filter</p>
+              <h2>Cuisine & difficulty</h2>
+            </div>
+            <span class="tag">GET /recipes/filter</span>
+          </div>
+          <form id="filterForm" class="stack">
+            <label>
+              <span>Cuisine</span>
+              <input id="filterCuisine" name="cuisine" placeholder="Mexican" />
+            </label>
+            <label>
+              <span>Difficulty</span>
+              <input id="filterDifficulty" name="difficulty" placeholder="Medium" />
+            </label>
+            <div class="actions">
+              <button type="submit">Filter</button>
+              <p class="hint" id="filter-status"></p>
+            </div>
+          </form>
+        </section>
+
+        <section class="panel wide" id="results-panel">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Results</p>
+              <h2>Recipes</h2>
+            </div>
+            <div class="pill" id="results-count">0 results</div>
+          </div>
+          <div id="recipes" class="recipes-grid">
+            <div class="empty">No recipes yet. Add one or search.</div>
+          </div>
+        </section>
+
+        <section class="panel" id="improve-panel">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">AI Assist</p>
+              <h2>Improve my recipe</h2>
+            </div>
+            <span class="tag">POST /ai/improve</span>
+          </div>
+          <form id="aiImproveForm" class="stack">
+            <label>
+              <span>Paste your recipe</span>
+              <textarea
+                id="aiInput"
+                rows="5"
+                placeholder="Paste ingredients and steps you want tightened"
+                required
+              ></textarea>
+            </label>
+            <div class="actions">
+              <button type="submit">Improve with AI</button>
+              <p class="hint" id="improve-status"></p>
+            </div>
+            <div class="output" id="aiOutput"></div>
+          </form>
+        </section>
+
+        <section class="panel" id="generate-panel">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">AI Generate</p>
+              <h2>Generate from an ingredient</h2>
+            </div>
+            <span class="tag">POST /ai/generate</span>
+          </div>
+          <form id="aiGenerateForm" class="stack">
+            <label>
+              <span>Ingredient</span>
+              <input id="ingredient" placeholder="butternut squash" required />
+            </label>
+            <div class="actions">
+              <button type="submit">Generate recipe</button>
+              <p class="hint" id="generate-status"></p>
+            </div>
+            <div class="output" id="generated"></div>
+          </form>
+        </section>
+      </main>
+    </div>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
